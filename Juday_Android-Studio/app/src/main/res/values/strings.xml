@@ -2,4 +2,40 @@
     <string name="app_name">juday</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="popCombArr">
+        <item></item>
+        <item>Speed</item>
+        <item>Comfort</item>
+        <item>Reliable</item>
+    </string-array>
+
+    <string-array name="carModelArr">
+        <item>X</item>
+        <item>Y</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="rangeArr">
+        <item>300mi</item>
+        <item>400mi</item>
+        <item>500mi</item>
+    </string-array>
+
+    <string-array name="dtrainArr">
+        <item>All-wheel</item>
+        <item>Rear-wheel</item>
+    </string-array>
+
+    <string-array name="wSizeArr">
+        <item>18~</item>
+        <item>19~</item>
+        <item>20~</item>
+    </string-array>
+
+    <string-array name="chargingArr">
+        <item>Wall</item>
+        <item>Mobile</item>
+    </string-array>
+
 </resources>
