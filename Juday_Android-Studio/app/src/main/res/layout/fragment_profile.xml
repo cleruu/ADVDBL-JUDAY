@@ -157,12 +157,6 @@
                     android:text="Logout"
                     android:textColorLink="#B6A344" />
 
-                <Button
-                    android:id="@+id/button_DeleteAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Delete account" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

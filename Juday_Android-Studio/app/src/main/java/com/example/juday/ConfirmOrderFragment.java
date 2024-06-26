@@ -235,6 +235,42 @@ public class ConfirmOrderFragment extends Fragment {
                             orderPS.setString(i, orders[i-3]);
                         }
                         orderPS.execute();
+
+                        String query = "SELECT * FROM `car_parts` WHERE stock = 0";
+                        PreparedStatement stockPS = con.prepareStatement(query);
+                        ResultSet stockRs = stockPS.executeQuery();
+
+                        String highesStockID = "SELECT MAX(restock_ID) FROM `est_restock_time`";
+                        PreparedStatement stockOrder = con.prepareStatement(highesStockID);
+                        ResultSet highestStockRs = stockOrder.executeQuery();
+                        int highestStock = 0;
+                        if (highestStockRs.next()) {
+                            highestStock = highestStockRs.getInt("MAX(restock_ID)");
+                        }
+                        highestStock += 1;
+
+                        String input = "INSERT INTO `est_restock_time`(`restock_ID`, `part_ID`," +
+                                "`shipping_time`, `delivery_time`) VALUES (?,?,?,?)";
+                        PreparedStatement inputPS = con.prepareStatement(carOrder);
+
+                        while (stockRs.next()) {
+                            String partID = rs.getString("part_ID");
+                            int type = typeChecker(partID);
+                            inputPS.setInt(1, highestStock);
+                            inputPS.setString(2, partID);
+
+                            if (type == -1 ) {
+                                type = carModelCalc(rs.getString("part_type"));
+                                inputPS.setInt(3, type);
+                            } else {
+                                inputPS.setInt(3, type);
+                            }
+
+                            String deliveryTime = dateAddDays(type);
+                            inputPS.setDate(4, java.sql.Date.valueOf(deliveryTime));
+
+                            highestStock += 1;
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -278,4 +314,38 @@ public class ConfirmOrderFragment extends Fragment {
         }
 
     }
+
+    private int carModelCalc(String s) {
+        if (s.contains("X")) {
+            return 12;
+        }
+        else if (s.contains("Y")) {
+            return 15;
+        }
+        else{
+            return 18;
+        }
+    }
+
+    public int typeChecker(String s) {
+        if (s.contains("charge")) {
+            return 7;
+        }
+        else if (s.contains("cmodel")) {
+            return -1;
+        }
+        else if (s.contains("dtrain")) {
+            return 4;
+        }
+        else if (s.contains("paint")) {
+            return 2;
+        }
+        else if (s.contains("range")) {
+            return 7;
+        }
+        else {
+            return 5;
+        }
+    }
+
 }

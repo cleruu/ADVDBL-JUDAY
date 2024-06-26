@@ -80,18 +80,6 @@
                     android:layout_marginBottom="20dp"
                     android:text="Login" />
 
-                <TextView
-                    android:id="@+id/static_DontHaveAccount_Label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Don't have an account?"
-                    android:textAlignment="center" />
-
-                <Button
-                    android:id="@+id/button_Register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Register" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

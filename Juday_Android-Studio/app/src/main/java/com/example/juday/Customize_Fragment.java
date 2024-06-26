@@ -89,6 +89,14 @@ public class Customize_Fragment extends Fragment {
         View inf = inflater.inflate(R.layout.fragment_customize_, container, false);
 
         Spinner popCombSpin = inf.findViewById(R.id.custom_spinner_POPCOMBO);
+        Button profBtn = (Button) inf.findViewById(R.id.customize_profile_button);
+        profBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
         popCombSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
